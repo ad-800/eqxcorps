@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_17_210223) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_18_162131) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_210223) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "stories_id"
+    t.text "content"
     t.index ["stories_id"], name: "index_sentences_on_stories_id"
     t.index ["user_id"], name: "index_sentences_on_user_id"
   end
@@ -37,13 +38,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_210223) do
     t.index ["prompt_id"], name: "index_stories_on_prompt_id"
   end
 
-  create_table "storyauthors", force: :cascade do |t|
+  create_table "story_authors", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "stories_id"
-    t.index ["stories_id"], name: "index_storyauthors_on_stories_id"
-    t.index ["user_id"], name: "index_storyauthors_on_user_id"
+    t.index ["stories_id"], name: "index_story_authors_on_stories_id"
+    t.index ["user_id"], name: "index_story_authors_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,6 +63,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_210223) do
   add_foreign_key "sentences", "stories", column: "stories_id"
   add_foreign_key "sentences", "users"
   add_foreign_key "stories", "prompts"
-  add_foreign_key "storyauthors", "stories", column: "stories_id"
-  add_foreign_key "storyauthors", "users"
+  add_foreign_key "story_authors", "stories", column: "stories_id"
+  add_foreign_key "story_authors", "users"
 end
