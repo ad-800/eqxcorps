@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Defines the root path route ("/")
   devise_for :users, :controllers => { registrations: 'users/registrations' }
   root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :storyrooms, only: [:show, :create]
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # API V1
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :stories, only: :show
