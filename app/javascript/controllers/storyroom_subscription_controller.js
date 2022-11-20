@@ -10,6 +10,6 @@ export default class extends Controller {
       { channel: "StoryroomChannel", id: this.storyroomIdValue },
       { received: data => console.log(data) }
     )
-    console.log(`Subscribed to the chatroom with the id ${this.storyroomIdValue}.`)
+    console.log(`Subscribed to the storyroom with the id ${this.storyroomIdValue}.`)
   }
 }
